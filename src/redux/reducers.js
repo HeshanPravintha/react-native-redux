@@ -1,4 +1,3 @@
-// reducers.js
 import {
     GET_PRODUCT_REQUEST,
     GET_PRODUCT_SUCCESS,
