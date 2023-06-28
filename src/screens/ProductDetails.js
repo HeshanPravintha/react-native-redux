@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
 import {fetchProductData} from '../redux/actions';
 import Button from '../components/Button';
@@ -15,10 +15,11 @@ class ProductDetails extends Component {
     return (
       <View style={styles.container}>
         {product ? (
-          <View>
+          <View style={styles.detailsContainer}>
+            <Image source={{uri: product.image}} style={styles.image} />
             <Text style={styles.title}>{product.title}</Text>
             <Text style={styles.price}>${product.price}</Text>
-            <Text>Description: {product.description}</Text>
+            <Text style={styles.description} numberOfLines={4}>Description: {product.description}</Text>
           </View>
         ) : (
           <Text>Loading product data...</Text>
@@ -32,12 +33,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
+    // alignItems: 'center',
     paddingHorizontal: 30,
   },
-  text: {
-    fontSize: 24,
+  detailsContainer: {
+    alignItems: 'center',
+  },
+  image: {
+    width: 300,
+    height: 200,
+    bottom: 20,
+    borderRadius: 10,
+    resizeMode: 'contain'
   },
   title: {
     fontSize: 25,
