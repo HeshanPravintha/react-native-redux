@@ -5,6 +5,7 @@ export const GET_PRODUCT_SUCCESS = 'GET_PRODUCT_SUCCESS';
 export const GET_PRODUCT_FAILURE = 'GET_PRODUCT_FAILURE';
 
 const API_BASE_URL = 'https://fakestoreapi.com/';
+//const API_BASE_URL = 'https://api.escuelajs.co/api/v1/';
 
 export const fetchProductData = () => {
   return dispatch => {
