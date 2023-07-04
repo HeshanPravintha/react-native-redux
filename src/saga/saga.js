@@ -1,6 +1,5 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, put, call } from 'redux-saga/effects';
 import axios from 'axios';
-
 import {
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_SUCCESS,
@@ -8,9 +7,9 @@ import {
 } from '../redux/actions';
 
 const API_BASE_URL = 'https://fakestoreapi.com/';
-//const API_BASE_URL = 'https://api.escuelajs.co/api/v1/';
 
-function* fetchProductDataSaga() {
+// Worker Saga: Makes the API call and dispatches success/failure actions.
+function* fetchProductData() {
   try {
     const response = yield call(axios.get, `${API_BASE_URL}products`);
     const products = response.data;
@@ -25,6 +24,9 @@ function* fetchProductDataSaga() {
   }
 }
 
-export function* watchFetchProductData() {
-  yield takeLatest(GET_PRODUCT_REQUEST, fetchProductDataSaga);
+// Watcher Saga: Watches for the latest GET_PRODUCT_REQUEST action and calls the worker saga.
+function* watchFetchProductData() {
+  yield takeLatest(GET_PRODUCT_REQUEST, fetchProductData);
 }
+
+export default watchFetchProductData;

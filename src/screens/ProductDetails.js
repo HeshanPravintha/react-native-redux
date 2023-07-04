@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {connect} from 'react-redux';
-import {fetchProductData} from '../redux/actions';
+import {GET_PRODUCT_REQUEST} from '../redux/actions';
 import Button from '../components/Button';
 
 class ProductDetails extends Component {
@@ -82,4 +82,8 @@ const mapStateToProps = state => ({
   error: state.error,
 });
 
-export default connect(mapStateToProps, {fetchProductData})(ProductDetails);
+const mapDispatchToProps = dispatch => ({
+  fetchProductData: () => dispatch({ type: GET_PRODUCT_REQUEST }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
