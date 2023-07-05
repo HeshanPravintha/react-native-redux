@@ -5,13 +5,13 @@ import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import reducers from './src/redux/reducers';
 import ProductDetails from './src/screens/ProductDetails';
-import watchFetchProductData from './src/saga/saga'; // Import the Saga watcher.
+import watchFetchProductData from './src/saga/saga';
 
 
 // const store = createStore(reducers, applyMiddleware(thunk));
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(watchFetchProductData); // Run the Saga watcher.
+sagaMiddleware.run(watchFetchProductData);
 
 const App = () => {
   return (
